@@ -117,6 +117,12 @@ In production, you would like to deploy this within a server like *nginx*:
 			proxy_set_header Connection 'upgrade';
 			proxy_set_header Host $host;
 			proxy_cache_bypass $http_upgrade;
+			add_header Access-Control-Allow-Origin https://your.moodle.edu always;
+			proxy_hide_header X-Frame-Options;
+			add_header Content-Security-Policy "frame-ancestors 'self' https://your.moodle.edu";
+			add_header "Cross-Origin-Resource-Policy" "cross-origin";
+			add_header "Cache-Control" "max-age=0, no-cache, no-store, must-revalidate";
+			add_header Pragma no-cache;
 		}
 	}
 	```
