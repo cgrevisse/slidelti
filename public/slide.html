@@ -15,7 +15,7 @@
     </head>
     <body>
         <div id="app" class="container m-4">
-            <h1 class="mb-4">{{ slide }}</h1>
+            <h1 class="mb-4">{{ slideName }}</h1>
             <div id="openseadragon" class="openseadragon"></div>
         </div>
 
@@ -28,6 +28,11 @@
                 data() {
                     return {
                         slide: new URLSearchParams(window.location.search).get('resource')
+                    }
+                },
+                computed: {
+                    slideName() {
+                        return this.slide.replaceAll("_", " ")
                     }
                 },
                 mounted() {
